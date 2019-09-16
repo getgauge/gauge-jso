@@ -1,80 +1,11 @@
-# Gauge-JS
+# Gauge-JSO
 
-[![Build Status - Travis CI](https://travis-ci.org/getgauge/gauge-js.svg?branch=master)](https://travis-ci.org/getgauge/gauge-js)
-[![Build status](https://ci.appveyor.com/api/projects/status/bpxrbrexfeeff6r6/branch/master?svg=true)](https://ci.appveyor.com/project/getgauge/gauge-js/branch/master)
-[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v1.4%20adopted-ff69b4.svg)](CODE_OF_CONDUCT.md)
-
-This project adds Javascript [language plugin](https://docs.gauge.org/plugins.html#language-reporting-plugins) for [gauge](http://getgauge.io).
-
+This project is an true offline installable variation of [Gauge-JS](https://github.com/getgauge/gauge-js) runner. This is based on [pure js](https://github.com/grpc/grpc-node/blob/master/packages/grpc-js/README.md) implementation of GRPC.
 ## Getting started
 
 ### Pre-requisite
 
 - [Gauge](https://gauge.org/index.html)
-
-### Installation
-```
-gauge install js
-```
-
-### Create a gauge-js project
-```
-gauge init js
-```
-
-### Run tests
-```
-gauge run specs
-```
-
-## Documentation
-
-For other details refer the documentation [here](https://docs.gauge.org)
-
-## Demos and examples
-
-### Plain Javascript
-
-Run the following command to create a [sample](https://github.com/getgauge/gauge-repository/tree/master/templates/js) gauge template
-
-```
-$ gauge init js
-```
-
-### Puppeteer
-
-Run the following command to create a [sample](https://github.com/getgauge/gauge-repository/tree/master/templates/js_puppeteer) [Puppeteer](https://github.com/GoogleChrome/puppeteer) template 
-
-```
-$ gauge init js_puppeteer
-```
-
-### WebDriver
-
-Run the following command to create a [sample](https://github.com/getgauge/gauge-repository/tree/master/templates/js_webdriver) [WebDriver](http://webdriver.io/) template
-```
-$ gauge init js_webdriver
-```
-
-### Alternate Installation options
-
-#### Install specific version
-```
-gauge install js --version 2.1.0
-```
-
-### Offline installation
-* Download the plugin from [Releases](https://github.com/getgauge/gauge-js/releases)
-```
-gauge install js --file gauge-js-2.1.0.zip
-```
-
-#### Nightly installation
-To install js nightly, download the latest nightly from [here](https://bintray.com/gauge/gauge-js/Nightly).
-
-Once you have the downloaded nightly gauge-js-version.nightly-yyyy-mm-dd.zip, install using:
-
-    gauge install js -f gauge-js-version.nightly-yyyy-mm-dd.zip
 
 
 #### Build from Source
