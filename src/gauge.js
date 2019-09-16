@@ -5,8 +5,10 @@ var protobuf = require("protobufjs");
 var path = require("path");
 var loader = require("./static-loader");
 var PROTO_PATH = __dirname + "/../gauge-proto/lsp.proto";
-var grpc = require("grpc");
-var lspProto = grpc.load(PROTO_PATH).gauge.messages;
+var grpc = require("@grpc/grpc-js");
+const protoLoader = require("@grpc/proto-loader");
+const packageDefinition = protoLoader.loadSync(PROTO_PATH);
+const lspProto = grpc.loadPackageDefinition(packageDefinition).gauge.messages;
 var LspServerHandler = require("./lsp-server");
 var tracker = require("./tracker.js");
 var logger = require("./logger");
@@ -28,10 +30,16 @@ function run() {
     if (process.env.GAUGE_LSP_GRPC) {
       var server = new grpc.Server();
       server.addService(lspProto.lspService.service, new LspServerHandler(server, types));
-      var p = server.bind("127.0.0.1:0", grpc.ServerCredentials.createInsecure());
-      logger.info("Listening on port:" + p);
-      server.start();
-      tracker.trackLSP();
+      server.bindAsync("127.0.0.1:0", grpc.ServerCredentials.createInsecure(), (err, port) => {
+        if (!err) {
+          logger.info("Listening on port:" + port);
+          server.start();
+          tracker.trackLSP();
+        } else {
+          logger.error(err);
+          process.exit();
+        }
+      });
     } else {
       var portInfo = process.env.GAUGE_API_PORTS;
       if (portInfo !== undefined && portInfo !== null && portInfo.trim() !== "") {

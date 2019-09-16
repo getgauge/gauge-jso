@@ -8,7 +8,7 @@ var localPath = function (relativePath) {
   return relativePath ? path.resolve(CWD, relativePath) : path.resolve(CWD);
 };
 
-var plugin = require(localPath("./js.json"));
+var plugin = require(localPath("./jso.json"));
 
 var cleanDir = function (dirPath) {
   try {
@@ -33,7 +33,7 @@ var recreateDir = function (dirPath) {
 
 var prepareFiles = function () {
   var buildDir = localPath("build"),
-    copyList = ["gauge-proto", "src", "skel", "index.js", "index.bat", "debug.bat", "js.json", "package.json", "package-lock.json", ".node-inspectorrc", "README.md"];
+    copyList = ["gauge-proto", "src", "skel", "index.js", "index.bat", "debug.bat", "jso.json", "package.json", "package-lock.json", ".node-inspectorrc", "README.md"];
 
   recreateDir(buildDir);
 
@@ -83,7 +83,7 @@ var createPackage = function (callback) {
 
   package.on("close", function () {
     console.log("Created: %s", path.join("deploy", packageFile));
-    console.log("To install this plugin, run:\n\t$ gauge install js --file %s", path.join("deploy", packageFile));
+    console.log(`To install this plugin, run:\n\t$ gauge install ${plugin.id} --file ${path.join("deploy", packageFile)}`);
     typeof callback == "function" && callback(path.join(deployDir, packageFile));
   });
 

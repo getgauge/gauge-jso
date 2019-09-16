@@ -262,14 +262,14 @@ var cacheFileResponse = function (request) {
   if (!fileUtil.isJSFile(filePath) || !fileUtil.isInImplDir(filePath)) {
     return;
   }
-  if (request.cacheFileRequest.status === this.options.fileStatus.valuesById[this.options.fileStatus.values.CREATED]) {
+  if (request.cacheFileRequest.status === this.options.fileStatus.values.CREATED) {
     if (!stepRegistry.isFileCached(filePath)) {
       loader.reloadFile(filePath, fs.readFileSync(filePath, "UTF-8"));
     }
-  } else if (request.cacheFileRequest.status === this.options.fileStatus.valuesById[this.options.fileStatus.values.CHANGED] ||
-    request.cacheFileRequest.status === this.options.fileStatus.valuesById[this.options.fileStatus.values.OPENED]) {
+  } else if (request.cacheFileRequest.status === this.options.fileStatus.values.CHANGED ||
+    request.cacheFileRequest.status === this.options.fileStatus.values.OPENED || request.cacheFileRequest.status === undefined) {
     loader.reloadFile(filePath, request.cacheFileRequest.content);
-  } else if (request.cacheFileRequest.status === this.options.fileStatus.valuesById[this.options.fileStatus.values.CLOSED] &&
+  } else if (request.cacheFileRequest.status === this.options.fileStatus.values.CLOSED &&
     fs.existsSync(filePath)) {
     loader.reloadFile(filePath, fs.readFileSync(filePath, "UTF-8"));
   } else {

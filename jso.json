@@ -1,5 +1,5 @@
 {
-  "id" : "js",
+  "id" : "jso",
   "version" : "2.3.6",
   "description": "Javascript support for gauge",
   "install": {
